@@ -10,11 +10,12 @@
         public function __construct()
         {
             $this->view = new View(__DIR__ .'/../../templates'); //Путь до папки с шаблонами
-            $this->db = new Db();
+            $this->db = Db::getInstance();
         }
         public function main()
         {
-            $articles = $this->db->query('SELECT * FROM `articles`;', [], Article::class);//Запрос
+            $articles = Article::findAll(); //Пропала зависимость от базы данных.
+            //$articles = $this->db->query('SELECT * FROM `articles`;', [], Article::class);//Запрос
             //var_dump($articles);
             $this->view->renderHtml('main/main.php', ['articles' => $articles]);
         }

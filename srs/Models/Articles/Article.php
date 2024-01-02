@@ -1,42 +1,43 @@
 <?php
     namespace srs\Models\Articles;
-    use MyProject\Models\Users\User;
-    class Article
+    use srs\Models\Users\User;
+    use srs\Models\ActiveRecordEntity;
+    class Article extends ActiveRecordEntity
     {
-        private $id;
-        private $name;
-        private $text;
-        private $authorId;
-        private $createdAt;
-
-        //Так вот в методе __set() я получаю нужное мне имя для свойства объекта из имени, переданного в аргументе $name, 
-        //а затем задаю в свойство с получившимся именем переданное значение.
-        public function __set($name, $value)
-        {
-            $camelCaseName = $this->underscoreToCamelCase($name);
-            $this->$camelCaseName = $value;
-        }
-
-        public function getId(): int
-        {
-            return $this->id;
-        }
-    
+        protected $name;
+        protected $text;
+        protected $authorId;
+        protected $createdAt;
         public function getName(): string
         {
             return $this->name;
         }
-    
         public function getText(): string
         {
             return $this->text;
         }
-        private function underscoreToCamelCase(string $source): string
+        public function setName(string $name)
         {
-            return lcfirst(str_replace('_', '', ucwords($source, '_')));
+            $this->name = $name;
         }
-        //Таким образом, если мы передадим в этот метод строку «created_at», он вернёт нам строку «createdAt», 
-        //если передадим «author_id», то он вернёт «authorId». Именно то, что нам нужно!
+        public function setText(string $text)
+        {
+            $this->text = $text;
+        }
+        public function setAuthor(User $author): void
+        {
+            $this->authorId = $author->getId();
+        }
+        protected static function getTableName(): string
+        {
+            return 'articles';
+        }
+        public function getAuthor(): User
+        {
+            return User::getById($this->authorId);
+        }
+            //Таким образом, если мы передадим в этот метод строку «created_at», он вернёт нам строку «createdAt», 
+            //если передадим «author_id», то он вернёт «authorId». Именно то, что нам нужно!
     }
     
 ?>
