@@ -11,12 +11,13 @@
   </div>
 </div>
 <h3>Comment</h3>
+<a href="/prog/www/article/<?=$article->getId();?>/comments" class="card-link">Create comment</a>
 <?php foreach($comments as $comment):?>
-<div class="card mt-3" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><?=$comment->getName()?></h5>
+  <div class="card mt-3" style="width: 18rem;">
+    <div class="card-body">
+      <a href="/prog/www/article/<?=$article->getId();?>/comments/<?=$comment->getId();?>" class="card-link"><?=$comment->getText()?></a>
+    </div>
   </div>
-</div>
 <?php endforeach;?>
 <?php
 require __DIR__.'/../footer.html';
