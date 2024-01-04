@@ -4,7 +4,7 @@
 <?php foreach($comments as $comment):?>
 <form action="/prog/www/article/update_comment/<?=$comment->getId();?>" method="POST">
   <div class="mb-3">
-    <label for="exampleInputName" class="form-label">Article Id</label>
+    <label for="exampleInputName" class="form-label">Id Article</label>
     <input type="text" class="form-control" id="exampleInputName" name="article" value="<?=$comment->getArticleId();?>"=>
   </div>
   <div class="mb-3">

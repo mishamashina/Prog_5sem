@@ -5,14 +5,11 @@
     use Services\Db;
     use src\Models\ActiveRecordEntity;
 
+
     class Comment extends ActiveRecordEntity{
-        protected $authorId;
         protected $articleId;
+        protected $authorId;
         protected $text;
-        public function getText()
-        {
-            return $this->text;
-        }
         public function getAuthorId()
         {
             return $this->authorId;
@@ -20,6 +17,10 @@
         public function getArticleId()
         {
             return $this->articleId;
+        }
+        public function getText()
+        {
+            return $this->text;
         }
         public function setArticleId(string $articleId){
             $this->articleId = $articleId;
@@ -32,6 +33,6 @@
         }
         public static function getTableName(){
             return 'comments';
-        }   
+        }
      }
 

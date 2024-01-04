@@ -11,6 +11,7 @@ class View{
 
     public function renderHtml(string $templateName, $vars = []){
         extract($vars);
+        //var_dump($vars);
         include $this->templatesPath.$templateName;
     }
 }

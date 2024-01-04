@@ -15,20 +15,12 @@
                break;
           }
      }
-    
+     //var_dump($matches);
      unset($matches[0]);
-     if ($controllerAndAction[1] == 'show_comment')
-     {
-          unset($matches[1]);
-     }
-     if ($controllerAndAction[1] == 'edit_comment')
-     {
-          unset($matches[1]);
-     }
+     //var_dump($matches);
      $action = $controllerAndAction[1];
      $controllerName = $controllerAndAction[0];
-      //var_dump($controllerName);
-     // var_dump($matches);
+     //var_dump($url);
      if ($isRouteFound){
           $controller = new $controllerName;
           $controller->$action(...$matches);
