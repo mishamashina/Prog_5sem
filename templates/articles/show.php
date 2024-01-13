@@ -12,13 +12,14 @@
 </div>
 <h3>Comment</h3>
 
-<a href="/prog/www/article/<?=$article->getId();?>/comments" class="card-link">Create comment</a>
+<a href="/prog/www/comment/create/<?=$article->getId();?>" class="card-link">Create comment</a>
 
 <?php foreach($comments as $comment):?>
 <div class="card mt-3" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title"><?=$comment->getText()?></h5>
-    <a href="/prog/www/article/comments/<?=$comment->getId();?>/edit" class="card-link">Update comment</a>
+    <a href="/prog/www/comment/edit/<?=$comment->getId();?>" class="card-link">Edit comment</a>
+    <a href="/prog/www/comment/delete/<?=$comment->getId();?>" class="card-link">Delete comment</a>
   </div>
 </div>
 <?php endforeach;?>
